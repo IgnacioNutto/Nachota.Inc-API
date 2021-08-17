@@ -6,10 +6,6 @@ const Product = require('./model/product');
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send("API NACHOTA.INC");
-})
-
 // Crear un Producto en la DB
 app.post('/product', (req, res) => {
     const product = new Product(req.body)
@@ -17,10 +13,11 @@ app.post('/product', (req, res) => {
     .then(() => { 
         res.status(201).send(product);
     }) 
-    .catch( (err) => {
+    .catch((err) => {
         res.status(400).send(err);
     });
 });
+
 
 // Mostrar todos los Productos
 app.get('/products', (req, res) => {
@@ -30,7 +27,6 @@ app.get('/products', (req, res) => {
     })
     .catch(err => res.status(404).send(err));
 });
-
 
 app.listen(port, () => {
     console.log(`Funcionando en http://localhost:${port}`);
