@@ -18,7 +18,6 @@ app.post('/product', (req, res) => {
     });
 });
 
-
 // Mostrar todos los Productos
 app.get('/products', (req, res) => {
     Product.find()
@@ -26,6 +25,19 @@ app.get('/products', (req, res) => {
         res.send(result);
     })
     .catch(err => res.status(404).send(err));
+});
+
+app.get('/delete/:id', (req, res) => {
+    const _id = req.params.id;
+    Product.deleteOne({ _id: _id })
+        .then((result) => {
+            res.send(result);
+            console.log(result);
+        })
+        .catch(err => {
+            res.send(err);
+            console.log(err)
+        })
 });
 
 app.listen(port, () => {
