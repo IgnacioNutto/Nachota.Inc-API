@@ -27,7 +27,7 @@ app.get('/products', (req, res) => {
     .catch(err => res.status(404).send(err));
 });
 
-app.get('/delete/:id', (req, res) => {
+app.delete('/product/:id', (req, res) => {
     const _id = req.params.id;
     Product.deleteOne({ _id: _id })
         .then((result) => {
@@ -39,7 +39,6 @@ app.get('/delete/:id', (req, res) => {
             console.log(err)
         })
 });
-
 app.listen(port, () => {
     console.log(`Funcionando en http://localhost:${port}`);
 });
