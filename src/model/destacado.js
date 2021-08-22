@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Product = mongoose.model('Product', {
+const Destacado = mongoose.model('Destacado', {
     name: {
         type: String,
         required: true,
@@ -20,4 +20,4 @@ const Product = mongoose.model('Product', {
     }
 });
 
-module.exports = Product;
+module.exports = Destacado;

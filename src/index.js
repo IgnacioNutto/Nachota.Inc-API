@@ -2,39 +2,39 @@ require('./db/mongoose');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3001;
-const Product = require('./model/product');
+const Destacado = require('./model/destacado');
 const Oferta = require('./model/oferta');
 const Producto = require('./model/producto');
 
 app.use(express.json());
 
-// POSTEAR, MOSTRAR Y ELIMINAR PRODUCTOS DEL INDEX
+// POSTEAR, MOSTRAR Y ELIMINAR PRODUCTOS DE DESTACADOS
 
-// Crear un Producto en la DB
-app.post('/product', (req, res) => {
-    const product = new Product(req.body)
+// Crear un DESTACADO en la DB
+app.post('/destacado', (req, res) => {
+    const destacado = new Destacado(req.body)
     product.save()
     .then(() => { 
-        res.status(201).send(product);
+        res.status(201).send(destacado);
     }) 
     .catch((err) => {
         res.status(400).send(err);
     });
 });
 
-// Mostrar todos los Productos
-app.get('/products', (req, res) => {
-    Product.find()
+// Mostrar todos los Destacados
+app.get('/destacados', (req, res) => {
+    Destacado.find()
     .then((result) => {
         res.send(result);
     })
     .catch(err => res.status(404).send(err));
 });
 
-// Eliminar UN producto mediante ID
-app.delete('/product/:id', (req, res) => {
+// Eliminar UN Destacado mediante ID
+app.delete('/destacado/:id', (req, res) => {
     const _id = req.params.id;
-    Product.deleteOne({ _id: _id })
+    Destacado.deleteOne({ _id: _id })
         .then((result) => {
             res.send(result);
             console.log(result);
