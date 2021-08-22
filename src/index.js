@@ -13,7 +13,7 @@ app.use(express.json());
 // Crear un DESTACADO en la DB
 app.post('/destacado', (req, res) => {
     const destacado = new Destacado(req.body)
-    product.save()
+    destacado.save()
     .then(() => { 
         res.status(201).send(destacado);
     }) 
