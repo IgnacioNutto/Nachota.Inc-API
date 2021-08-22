@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3001;
 const Product = require('./model/product');
+const Oferta = require('./model/oferta');
 
 app.use(express.json());
 
@@ -35,10 +36,30 @@ app.delete('/product/:id', (req, res) => {
             console.log(result);
         })
         .catch(err => {
-            res.send(err);
+            res.send(err);-
             console.log(err)
         })
 });
+
+app.post('/oferta', (req, res) => {
+    const oferta = new Oferta(req.body)
+    oferta.save()
+    .then(() => { 
+        res.status(201).send(oferta);
+    }) 
+    .catch((err) => {
+        res.status(400).send(err);
+    });
+});
+
+app.get('/ofertas', (req, res) => {
+    Oferta.find()
+    .then((result) => {
+        res.send(result);
+    })
+    .catch(err => res.status(404).send(err));
+});
+
 app.listen(port, () => {
     console.log(`Funcionando en http://localhost:${port}`);
 });
