@@ -5,8 +5,8 @@ const Destacado = mongoose.model('Destacado', {
         type: String,
         required: true,
         validate(value) {
-            if (value.length > 20) {
-                throw new Error('No se pueden ingresar nombres con más de 20 caracteres')
+            if (value.length > 25) {
+                throw new Error('No se pueden ingresar nombres con más de 25 caracteres')
             }
         }
     },
